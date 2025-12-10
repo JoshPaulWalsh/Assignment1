@@ -1,22 +1,19 @@
-using namespace std;
-#include <iostream>
-#include <vector>
 #pragma once
+#include <vector>
+#include <iostream>
 
 class ordered_array {
   public:
     /* constructor
-       Construct a new data with the given capacity (maximum size).
-       The size of a new data should be 0.
+       Construct a new arr with the given capacity (maximum size).
+       The size of a new arr should be 0.
     */
+   ordered_array(int cap);
    
-   vector<int> data;
-
-   int size(int);   
-
-   int size(){
-      return data.size();
-   }
+   /* size()
+       Returns the number of elements in the array.
+    */
+   int size();   
 
    /* capacity()
        Returns the maximum size of the array.
@@ -36,19 +33,6 @@ class ordered_array {
     */
    void insert(int val);
 
-   void insert(int val){
-      if(data.size() == data.capacity()){
-         cout << "The ordered array's capacity is full";
-         return;
-      }
-      
-      for(int i = 0; i < data.size(); i++){
-         if(val < data[i]){
-            data.insert(data.begin() + i, val);
-            return;
-         }
-      }
-    }
 
     /* remove(e)
        Remove e from the array, if it exists. (If it does not exist, the
@@ -59,29 +43,12 @@ class ordered_array {
     */
     void remove(int elem);
 
-    void remove(int val){
-      for(int i = 0; i < data.size(); i++){
-         if(val == data[i]){
-            data.erase(data.begin() + i);
-         }
-      }
-    }
-
     /* exists(e)
        Returns true if e is present at least once in the array.
 
        If e == -2147483648 then this returns false.
     */
     bool exists(int elem);
-
-    bool exists(int val){
-      for(int i = 0; i < data.size(); i++){
-         if(val == data[i]){
-            return true;
-         }
-      }
-      return false;
-    }
 
     /* at(i)
        Returns a *reference* to the element at index i. If i < 0 or i >= size(),
@@ -93,6 +60,6 @@ class ordered_array {
     int& at(int i);
 
   private:
-
-    // Add private members as needed
+   std::vector<int> arr;
+   int max_capacity;
 };
